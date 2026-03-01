@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>খামার ভিটা | কোরবানি কেন্দ্রিক সেবা - বিস্তারিত</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Baloo+Da+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #2E7D32;
+      --secondary: #A5D6A7;
+      --accent: #6D4C41;
+      --bg-cream: #F9F6F0;
+      --text-dark: #2C2C2C;
+      --card-white: #FFFFFF;
+      --shadow: 0 8px 20px rgba(0,0,0,0.05), 0 2px 6px rgba(0,0,0,0.03);
+      --border-radius: 12px;
+    }
+    body {
+      font-family: 'Hind Siliguri', sans-serif;
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+      line-height: 1.7;
+    }
+    h1, h2, h3, h4, .logo {
+      font-family: 'Baloo Da 2', cursive;
+      font-weight: 600;
+    }
+    h1 { font-size: 2.8rem; }
+    h2 { font-size: 2.2rem; }
+    h3 { font-size: 1.6rem; }
+    p { font-size: 1.15rem; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; height: auto; display: block; }
+    .container {
+      width: 90%;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
+      font-family: 'Hind Siliguri', sans-serif;
+    }
+    .btn:hover {
+      background: #1f5c24;
+      transform: translateY(-2px);
+    }
+    /* নেভবার */
+    .navbar {
+      background: var(--primary);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 0;
+    }
+    .logo {
+      font-family: 'Baloo Da 2', cursive;
+      font-size: 2.2rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo i { font-size: 2.5rem; color: var(--secondary); }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+    .nav-links a:hover { color: var(--secondary); }
+    .hamburger { display: none; font-size: 2rem; cursor: pointer; }
+    /* ফুটার */
+    .footer {
+      background: var(--primary);
+      color: white;
+      padding: 3rem 0 1rem;
+      margin-top: 3rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      gap: 2rem;
+    }
+    .footer a:hover { color: var(--secondary); }
+    .copyright { text-align: center; margin-top: 3rem; font-size: 1rem; opacity: 0.8; }
+    /* হোয়াটসঅ্যাপ ফ্লোট */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #25D366;
+      color: white;
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 35px;
+      line-height: 65px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+      z-index: 99;
+      transition: 0.2s;
+    }
+    .whatsapp-float:hover { transform: scale(1.1); background: #20b859; }
+    /* স্পেশাল সেকশন স্টাইল */
+    .hero-banner {
+      background: linear-gradient(rgba(0,40,0,0.7), rgba(0,20,0,0.7));
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      color: white;
+      text-align: center;
+    }
+    .section-card {
+      background: white;
+      border-radius: 30px;
+      padding: 2rem;
+      margin: 2.5rem 0;
+      box-shadow: var(--shadow);
+    }
+    .service-highlight {
+      background: linear-gradient(145deg, #f0f7e9, #ffffff);
+      border-left: 8px solid var(--primary);
+      padding: 2rem;
+      border-radius: 20px;
+      margin: 2rem 0;
+    }
+    .badge {
+      background: var(--primary);
+      color: white;
+      padding: 0.2rem 1rem;
+      border-radius: 50px;
+      display: inline-block;
+      font-size: 0.9rem;
+    }
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .price-table th {
+      background: var(--primary);
+      color: white;
+      padding: 15px;
+      font-size: 1.2rem;
+    }
+    .price-table td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #eee;
+    }
+    .price-table tr:last-child td { border-bottom: none; }
+    .price-table tr:hover { background: #f5f5f5; }
+    /* তুলনা টেবিল */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .compare-col {
+      background: white;
+      padding: 1.8rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+    .compare-col h3 { text-align: center; padding-bottom: 0.8rem; border-bottom: 3px solid; }
+    .compare-col:first-child h3 { border-color: #c62828; }
+    .compare-col:last-child h3 { border-color: var(--primary); }
+    .stat-bar {
+      background: var(--secondary);
+      padding: 1.2rem;
+      border-radius: 60px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin: 2rem 0;
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+    /* FAQ */
+    .faq-item {
+      background: white;
+      border-radius: 16px;
+      margin-bottom: 1rem;
+      padding: 1.2rem 1.5rem;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .faq-item:hover { box-shadow: 0 12px 24px rgba(0,0,0,0.1); }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+    .faq-answer {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px dashed #ccc;
+      display: none;
+    }
+    .faq-item.active .faq-answer { display: block; }
+    
+    @media (max-width: 768px) {
+      h1 { font-size: 2.2rem; }
+      .nav-links { display: none; flex-direction: column; background: var(--primary); width: 100%; padding: 1rem; }
+      .nav-links.show { display: flex; }
+      .hamburger { display: block; }
+      .nav-container { flex-wrap: wrap; }
+      .compare-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- হোয়াটসঅ্যাপ ফ্লোটিং বাটন -->
+  <a href="https://wa.me/+8801928506706" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+  <!-- স্টিকি নেভবার (হোমপেজে ফেরত যাওয়ার লিংক সহ) -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <div class="logo"><i class="fas fa-leaf"></i> খামার ভিটা</div>
+      <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">নীড় পাতা</a>
+        <a href="#kurbani">কোরবানি কেন্দ্রিক পরিসেবা</a>
+        <a href="#faq">সাধারন জিজ্ঞাসা(FAQ)</a>
+        <a href="#about">আমাদের সম্পর্কে</a>
+        <a href="#contact">যোগাযোগ</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- হিরো ব্যানার (এই পৃষ্ঠার জন্য) -->
+  <section class="hero-banner" style="background: linear-gradient(rgba(0,40,0,0.6), rgba(0,20,0,0.6)), url('kurbani.jpeg') center/cover no-repeat; min-height: 80vh; display: flex; align-items: center; color: white;">
+    <div class="container">
+      <h1 style="font-size: 4rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);"> কোরবানি কেন্দ্রিক পরিসেবা</h1>
+      <p style="font-size: 1.8rem; max-width: 800px; margin: 1rem auto;">নৈতিক, স্বাস্থ্যসম্মত ও দায়িত্বশীল পশু নির্বাচনে আমাদের সাথে থাকুন। কোরবানি শুধু একটি পশু ক্রয় নয়, এটি একটি ইবাদত, একটি আমানত।</p>
+    </div>
+  </section>
+
+  <div class="container" style="align-items: center;">
+    <!-- ===== দর্শন ও বাস্তবতা (পৃষ্ঠা ৪-৫) ===== -->
+    <section id="kurbani" class="section-card" style="scroll-margin-top: 80px; align-items: center;">
+      <h2 style="color: var(--primary);"><i class="fas fa-heart" style="margin-right: 10px; align-items: center;"></i> কোরবানি কী? আমাদের দৃষ্টিভঙ্গি</h2>
+      <p style="align-items: center;">কোরবানি শুধু একটি পশু ক্রয় নয় - এটি একটি ইবাদত, একটি আমানত, একটি মানসিক প্রশান্তির নাম। গরুটির সুস্থতা, নিরাপদ পরিবেশ, হালাল পদ্ধতি ও কোরবানির উপযুক্ত অবস্থা - এই নিশ্চয়তাই সবচেয়ে গুরুত্বপূর্ণ। সবুজ চারণা সেই নিশ্চয়তা দেওয়ার জন্যই পরিচালিত, স্বচ্ছ ও ইসলামী নীতিতে গরু পালন করে।</p>
+      <div style="margin-top: 1.5rem; background: var(--secondary); padding: 1rem 2rem; border-radius: 60px; display: inline-block;">
+        <span class="badge" style="font-size: 1.1rem;">আমাদের অঙ্গীকার</span> স্বাস্থ্যবান, হালাল ও ট্রেসেবল পশু সরবরাহ।
+      </div>
+    </section>
+
+    <!-- ===== গুরুত্বপূর্ণ সত্যঃ তুলনা টেবিল (পৃষ্ঠা ৬) ===== -->
+    <section class="section-card">
+      <h2 style="color: var(--primary);">🐄 সাধারণ বাজার vs সবুজ চারণা</h2>
+      <div class="compare-grid">
+        <div class="compare-col">
+          <h3 style="color: #c62828;">🏪 সাধারণ বাজার / হাট</h3>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin: 1rem 0;"><i class="fas fa-times-circle" style="color: #c62828; margin-right: 10px;"></i> <strong>দামের নিশ্চয়তা:</strong> দরদাম ও দ্রুত নিলাম</li>
+            <li style="margin: 1rem 0;"><i class="fas fa-times-circle" style="color: #c62828; margin-right: 10px;"></i> <strong>পশুর স্বাস্থ্য:</strong> বাহ্যিকভাবে দেখা, গোপন রোগ অজানা</li>
+            <li style="margin: 1rem 0;"><i class="fas fa-times-circle" style="color: #c62828; margin-right: 10px;"></i> <strong>কৃমি/হরমোন ঝুঁকি:</strong> হরমোন ব্যবহারের ঝুঁকি</li>
+            <li style="margin: 1rem 0;"><i class="fas fa-times-circle" style="color: #c62828; margin-right: 10px;"></i> <strong>খাদ্যের স্বচ্ছতা:</strong> কী খাওয়ানো হয় অজানা</li>
+            <li style="margin: 1rem 0;"><i class="fas fa-times-circle" style="color: #c62828; margin-right: 10px;"></i> <strong>পরিবেশ:</strong> কর্দমাক্ত, অস্বাস্থ্যকর</li>
+            <li style="margin: 1rem 0;"><i class="fas fa-times-circle" style="color: #c62828; margin-right: 10px;"></i> <strong>নিরাপত্তা ঝুঁকি:</strong> ঠেলাঠেলি, দুর্ঘটনার ঝুঁকি</li>
+          </ul>
+        </div>
+        <div class="compare-col">
+          <h3 style="color: var(--primary);">✅ খামার ভিটা</h3>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin: 1rem 0;"><i class="fas fa-check-circle" style="color: #2E7D32; margin-right: 10px;"></i> <strong>নির্ধারিত মূল্য:</strong> বাস্তব খরচ ও ন্যায্যতার ওপর নির্ভরশীল</li>
+            <li style="margin: 1rem 0;"><i class="fas fa-check-circle" style="color: #2E7D32; margin-right: 10px;"></i> <strong>নিয়মিত চিকিৎসকের তত্ত্বাবধান:</strong> স্বাস্থ্যকার্ড ও ভ্যাকসিন রেকর্ড</li>
+            <li style="margin: 1rem 0;"><i class="fas fa-check-circle" style="color: #2E7D32; margin-right: 10px;"></i> <strong>কৃমি ও হরমোনমুক্ত:</strong> প্রাকৃতিক খাদ্য ও নিয়মিত ডিওয়ার্মিং</li>
+            <li style="margin: 1rem 0;"><i class="fas fa-check-circle" style="color: #2E7D32; margin-right: 10px;"></i> <strong>জৈব ও পুষ্টিকর খাবার:</strong> সুষম রেশন (ভুট্টা, খৈল, ঘাস)</li>
+            <li style="margin: 1rem 0;"><i class="fas fa-check-circle" style="color: #2E7D32; margin-right: 10px;"></i> <strong>পরিচ্ছন্ন ও নিয়ন্ত্রিত:</strong> জীবাণুমুক্ত, প্রশস্ত শেড</li>
+            <li style="margin: 1rem 0;"><i class="fas fa-check-circle" style="color: #2E7D32; margin-right: 10px;"></i> <strong>নিরাপদ হ্যান্ডলিং:</strong> পশু শান্ত, অভিজ্ঞ হ্যান্ডলার</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ভ্যাকসিন, কৃমি ও মিনারেল (পৃষ্ঠা ৭) ===== -->
+    <section class="section-card">
+      <h2 style="color: var(--primary);"><i class="fas fa-syringe"></i> নিয়মিত টিকা ও স্বাস্থ্য সেবা (প্রতি গরুর জন্য)</h2>
+      <table class="price-table">
+        <tr><th>টিকা/ঔষধের ধরণ</th><th>রোগ/উদ্দেশ্য</th><th>মূল্য (প্রায়)</th></tr>
+        <tr><td>FMD টিকা</td><td>ক্ষুরা রোগ</td><td>৳ ২৫০</td></tr>
+        <tr><td>LSD টিকা</td><td>ত্বক নডিউল রোগ</td><td>৳ ৩০০</td></tr>
+        <tr><td>BQ টিকা</td><td>বাতিলা</td><td>৳ ৫০</td></tr>
+        <tr><td>Anthrax টিকা</td><td>অ্যানথ্রাক্স/প্লেগ</td><td>৳ ৫০</td></tr>
+        <tr><td>কৃমিনাশক (Deworming)</td><td>অন্ত্র ও পাকস্থলীর কৃমি</td><td>৳ ৩০০</td></tr>
+        <tr><td>মিনারেল মিক্সচার</td><td>হজম শক্তিশালীকরণ</td><td>৳ ২৫০</td></tr>
+        <tr><td>ভিটামিন-মিনারেল সাপ্লিমেন্ট</td><td>রোগ প্রতিরোধ ক্ষমতা বৃদ্ধি</td><td>৳ ২৫০</td></tr>
+        <tr style="background: #e0f2e0;"><th colspan="2">মোট খরচ (প্রতি বছর)</th><th>৳ ১,৪৫০+</th></tr>
+      </table>
+      <p style="margin-top: 1rem; font-style: italic;">*এই টিকাগুলো নিয়মিত দেওয়া হয়, ফলে গরু রোগমুক্ত থাকে এবং কোরবানির জন্য নিরাপদ হয়।</p>
+    </section>
+
+    <!-- ===== ফিড ফর্মুলা ও খাদ্য খরচ (পৃষ্ঠা ৭-৮) ===== -->
+    <section class="section-card">
+      <div style="display: flex; flex-wrap: wrap; gap: 2rem;">
+        <div style="flex: 1; min-width: 280px;">
+          <h3><i class="fas fa-seedling"></i> ফিড ফর্মুলা (ভুট্টাভিত্তিক)</h3>
+          <table class="price-table">
+            <tr><th>উপাদান</th><th>অনুপাত</th><th>মূল্য/কেজি</th></tr>
+            <tr><td>ভুট্টা</td><td>৮.০০%</td><td>৳ ১৩</td></tr>
+            <tr><td>গমের ভূষি</td><td>২.০০%</td><td>৳ ৬৫</td></tr>
+            <tr><td>খৈল</td><td>১.০০%</td><td>৳ ৮</td></tr>
+          </table>
+        </div>
+        <div style="flex: 2;">
+          <h3><i class="fas fa-weight-scale"></i> লাইভ ওজন অনুযায়ী খাদ্য খরচ (আনুমানিক)</h3>
+          <table class="price-table">
+            <tr><th>ওজন (কেজি)</th><th>মোট খাদ্য খরচ (টাকা)</th></tr>
+            <tr><td>১৫০-২০০</td><td>৳ ১০,০০০-১৪,৫০০</td></tr>
+            <tr><td>২০১-২৫০</td><td>৳ ১৬,০০০-১৮,০০০</td></tr>
+            <tr><td>২৫১-৩০০</td><td>৳ ১৯,৫০০-২১,৫০০</td></tr>
+            <tr><td>৩০১-৩৫০</td><td>৳ ২৩,৫০০-২৫,০০০</td></tr>
+            <tr><td>৩৫১-৪০০</td><td>৳ ২৭,০০০-২৯,০০০</td></tr>
+            <tr><td>৪০১-৪৫০</td><td>৳ ৩০,৫০০-৩২,৫০০</td></tr>
+            <tr><td>৪৫১-৫০০</td><td>৳ ৩৪,০০০-৩৬,০০০</td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== কোরবানি সেবা প্যাকেজ ===== -->
+    <section class="service-highlight">
+      <h2 style="color: var(--primary);">📦 আমাদের কোরবানি প্যাকেজে যা আছে</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 2rem; margin-top: 1.5rem;">
+        <div><i class="fas fa-id-card" style="color:var(--primary);font-size:2rem;"></i> <strong>গরুর পরিচয়:</strong> নাম, বয়স, ওজন ও জাতের বিবরণ</div>
+        <div><i class="fas fa-notes-medical" style="color:var(--primary);font-size:2rem;"></i> <strong>স্বাস্থ্য কার্ড:</strong> টিকা, কৃমি, চিকিৎসার সম্পূর্ণ ইতিহাস</div>
+        <div><i class="fas fa-camera" style="color:var(--primary);font-size:2rem;"></i> <strong>ছবি ও ভিডিও:</strong> একাধিক ছবি ও ভিডিও পাঠানো হয়</div>
+        <div><i class="fas fa-truck" style="color:var(--primary);font-size:2rem;"></i> <strong>পরিবহন সহায়তা:</strong> ইচ্ছে করলে বাড়ি পৌঁছে দেওয়া</div>
+        <div><i class="fas fa-hand-holding-heart" style="color:var(--primary);font-size:2rem;"></i> <strong>দেখা ও পছন্দ:</strong> ফার্মে এসে দেখে পছন্দ করার সুযোগ</div>
+        <div><i class="fas fa-balance-scale" style="color:var(--primary);font-size:2rem;"></i> <strong>ন্যায্য মূল্য:</strong> কোনও হিডেন চার্জ নেই</div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ (পৃষ্ঠা ৯-১০) ===== -->
+    <section id="faq" style="margin: 4rem 0; scroll-margin-top: 80px;">
+      <h2 style="color: var(--primary); text-align: center;">❓ সাধারণ জিজ্ঞাসা (FAQ)</h2>
+      <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem;">কোরবানি ও আমাদের সেবা নিয়ে আপনার প্রশ্নের উত্তর</p>
+
+      <div class="faq-item" onclick="this.classList.toggle('active')">
+        <div class="faq-question">প্রশ্ন ১: আপনারা কি শুধু কোরবানির সময় গরু বিক্রি করেন? <i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer">আমরা সারা বছরই গরু লালন-পালন করি, তবে কোরবানির মৌসুমে বিশেষ আয়োজন থাকে। চাইলে যে কোনো সময় এসে গরু দেখতে পারেন এবং আগেই বুকিং দিতে পারেন।</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('active')">
+        <div class="faq-question">প্রশ্ন ২: গরুর স্বাস্থ্য নিয়ে নিশ্চয়তা কী? <i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer">প্রতিটি গরু নিয়মিত পশুচিকিৎসকের তত্ত্বাবধানে থাকে। প্রয়োজনীয় টিকা (FMD, BQ, Anthrax, LSD) ও কৃমিনাশক সময়মতো দেওয়া হয়। আমরা স্বাস্থ্য কার্ড প্রদান করি।</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('active')">
+        <div class="faq-question">প্রশ্ন ৩: গরু কি হরমোন বা কৃত্রিম পদ্ধতিতে মোটাতাজা করা হয়? <i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer">একেবারেই না। আমরা কোনো হরমোন বা স্টেরয়েড ব্যবহার করি না। আমাদের গরু প্রাকৃতিক খাদ্য (ভুট্টা, খৈল, ঘাস, পরিমিত খাদ্য) খেয়ে স্বাভাবিকভাবে বড় হয়। এটি আমাদের নীতির অংশ।</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('active')">
+        <div class="faq-question">প্রশ্ন ৪: গরুর মূল্য কিভাবে নির্ধারণ করা হয়? <i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer">মূল্য নির্ধারণ করা হয় লাইভ ওজন, জাত, বয়স ও খরচের ভিত্তিতে। আমাদের মূল্য স্বচ্ছ এবং ন্যায্য। দরদামের বদলে আমরা প্রকৃত খরচ ও ন্যায্য মুনাফা যোগ করে মূল্য ঠিক করি।</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('active')">
+        <div class="faq-question">প্রশ্ন ৫: গরু দেখতে ও পছন্দ করে কেনার সুযোগ আছে কি? <i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer">অবশ্যই। আপনি সরাসরি ফার্মে এসে গরু দেখতে পারেন, নিজ হাতে খাওয়াতে পারেন, পছন্দ হলে তবেই বুকিং দিতে পারেন। আমাদের খামার সবসময় দর্শনার্থীদের জন্য উন্মুক্ত।</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('active')">
+        <div class="faq-question">প্রশ্ন ৬: গরু অসুস্থ হয়ে পড়লে কী ব্যবস্থা? <i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer">যে কোনো অসুস্থতায় অবহিত করলে পশুচিকিৎসকের পরামর্শ ও চিকিৎসা দেওয়া হয়। গুরুতর ক্ষেত্রে মালিকের সম্মতি নিয়ে সিদ্ধান্ত নেওয়া হয়। তবে আমাদের নিয়মিত স্বাস্থ্য পরীক্ষার কারণে অসুস্থতার সম্ভাবনা খুব কম।</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('active')">
+        <div class="faq-question">প্রশ্ন ৭: পরিবহনের ব্যবস্থা আপনারা করেন? <i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer">হ্যাঁ, প্রয়োজন অনুযায়ী পরিবহনে সহায়তা করি। পরিবহন খরচ আলাদা, তবে স্বল্প মূল্যে নির্ভরযোগ্য যানের ব্যবস্থা করে দিই।</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('active')">
+        <div class="faq-question">প্রশ্ন ৮: অগ্রিম বুকিং দিতে চাই, প্রক্রিয়া কী? <i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer">আপনি ফোন, হোয়াটসঅ্যাপ বা সরাসরি এসে বুকিং দিতে পারেন। ৫০% অগ্রিম জমা দিলে গরু রিজার্ভ করা হয়। বাকি টাকা কোরবানির সময় পরিশোধ।</div>
+      </div>
+    </section>
+
+    <!-- ===== আমাদের সম্পর্কে (পৃষ্ঠা ১-২, ৪, ১০) ===== -->
+    <section id="about" style="margin: 4rem 0; scroll-margin-top: 80px;">
+      <h2 style="color: var(--primary); text-align: center;">🌱 আমাদের সম্পর্কে</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; margin-top: 4rem;">
+        <img src="farm.jpg" alt="কৃষক" style="border-radius: 15px; flex:1 1 200px; box-shadow: var(--shadow);">
+        <div style="flex:2 1 300px;">
+          <h3>আমাদের গল্প</h3>
+          <p>খামারের যাত্রা শুরু হয় ২০২১ সালে একটি ছোট পারিবারিক উদ্যোগ হিসেবে। বর্তমানে আমরা ২০টিরও বেশি গরু ও বিভিন্ন ফলের বাগান নিয়ে গর্বিত। আমাদের লক্ষ্য - নিরাপদ, স্বাস্থ্যসম্মত ও ভোক্তা-বান্ধব খাদ্য উৎপাদন ও সরবরাহ করা।</p>
+          <p>প্রতিষ্ঠানটি উৎপাদন থেকে সরবরাহ পর্যন্ত প্রতিটি ধাপে গুণগত মান, নিরাপত্তা ও স্বচ্ছতা বজায় রাখে। আধুনিক ও হল্ট সাইজ ফার্মিং পদ্ধতি অনুসরণ করে রাসায়নিক-মুক্ত, কীটনাশক-মুক্ত ও হরমোনমুক্ত খাদ্য সরবরাহে বিশেষ গুরুত্ব দিই।</p>
+        </div>
+      </div>
+
+      <div style="margin-top: 2rem; background: white; border-radius: 30px; padding: 2rem; box-shadow: var(--shadow);">
+        <h3>আমাদের লক্ষ্য (Vision)</h3>
+        <p>বাংলাদেশে একটি দায়িত্বশীল, স্বচ্ছ ও হল্ট সাইজ ফার্মিং এর মডেল হিসেবে গড়ে তোলা, যেখানে ভোক্তা ন্যায্য মূল্যে নিরাপদ খাদ্য পাবেন।</p>
+        <h3 style="margin-top: 1.5rem;">আমাদের মিশন (Mission)</h3>
+        <ul style="list-style-type: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1rem;">
+          <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> নিরাপদ ও স্বাস্থ্যসম্মত খাদ্য উৎপাদন</li>
+          <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> মধ্যস্বত্বভোগী বাদ দিয়ে সরাসরি বাজার</li>
+          <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> ভোক্তার আস্থা ও স্বচ্ছতা নিশ্চিত করা</li>
+          <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> সামাজিক ও পরিবেশগত দায়বদ্ধতা</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== যোগাযোগ ===== -->
+    <section id="contact" style="margin: 4rem 0; scroll-margin-top: 80px;">
+      <div style="background: white; border-radius: 30px; padding: 2rem; box-shadow: var(--shadow);">
+        <h2 style="color: var(--primary);">📞 যোগাযোগ করুন</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 2rem; margin: 2rem 0;">
+          <div><i class="fas fa-phone-alt" style="color:var(--primary);"></i> <strong>ফোন:</strong> +880 1928 506 706</div>
+          <div><i class="fas fa-envelope" style="color:var(--primary);"></i> <strong>ইমেইল:</strong> khamarvita@gmail.com</div>
+          <div><i class="fas fa-map-marker-alt" style="color:var(--primary);"></i> <strong>ঠিকানা:</strong> ঘাটাইল, টাঙ্গাইল</div>
+        </div>
+        <a href="#" class="btn">হোয়াটসঅ্যাপে বার্তা পাঠান</a>
+      </div>
+    </section>
+  </div>
+
+  <!-- ফুটার -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><h3><i class="fas fa-leaf"></i> খামার ভিটা</h3><p

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>খামার ভিটা | কুরবানির গরু কালেকশন</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Baloo+Da+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #2E7D32;
+      --secondary: #A5D6A7;
+      --accent: #6D4C41;
+      --bg-cream: #F9F6F0;
+      --text-dark: #2C2C2C;
+      --card-white: #FFFFFF;
+      --shadow: 0 8px 20px rgba(0,0,0,0.05), 0 2px 6px rgba(0,0,0,0.03);
+      --border-radius: 16px;
+    }
+    body {
+      font-family: 'Hind Siliguri', sans-serif;
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+    h1, h2, h3, h4, .logo {
+      font-family: 'Baloo Da 2', cursive;
+      font-weight: 600;
+    }
+    h1 { font-size: 2.8rem; }
+    p { font-size: 1.1rem; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; height: auto; display: block; }
+    .container {
+      width: 90%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 0.7rem 1.8rem;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
+      font-family: 'Hind Siliguri', sans-serif;
+    }
+    .btn:hover { background: #1f5c24; transform: translateY(-2px); }
+    
+    /* নেভবার */
+    .navbar {
+      background: var(--primary);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 0;
+    }
+    .logo {
+      font-family: 'Baloo Da 2', cursive;
+      font-size: 2.2rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo i { font-size: 2.5rem; color: var(--secondary); }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+    .nav-links a:hover { color: var(--secondary); }
+    .hamburger { display: none; font-size: 2rem; cursor: pointer; }
+    
+    /* ফুটার */
+    .footer {
+      background: var(--primary);
+      color: white;
+      padding: 3rem 0 1rem;
+      margin-top: 3rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      gap: 2rem;
+    }
+    .footer a:hover { color: var(--secondary); }
+    .copyright { text-align: center; margin-top: 3rem; font-size: 1rem; opacity: 0.8; }
+    
+    /* হোয়াটসঅ্যাপ ফ্লোট */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #25D366;
+      color: white;
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 35px;
+      line-height: 65px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+      z-index: 99;
+      transition: 0.2s;
+    }
+    .whatsapp-float:hover { transform: scale(1.1); background: #20b859; }
+
+    /* ক্যাটল গ্রিড - পরিবর্তিত: 3 কজলা (আগে ছিল 4) */
+    .cattle-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);  /* 4 থেকে 3 করা হয়েছে */
+      gap: 2rem;  /* ফাঁক সামান্য বাড়ানো হয়েছে */
+      margin: 2.5rem 0;
+    }
+    
+    /* রেসপন্সিভ ব্রেকপয়েন্ট আপডেট */
+    @media (max-width: 1000px) {
+      .cattle-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .cattle-grid { grid-template-columns: 1fr; }
+    }
+
+    /* কার্ড ডিজাইন - একই */
+    .cattle-card {
+      background: var(--card-white);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: 0.3s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+    .cattle-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 32px rgba(0,0,0,0.15);
+    }
+
+    /* স্লাইডার - উচ্চতা সামান্য বাড়ানো হয়েছে 3 কলামের জন্য */
+    .slider-container {
+      position: relative;
+      width: 100%;
+      height: 250px;  /* 220px থেকে 250px করা হয়েছে */
+      overflow: hidden;
+      background: #f0f0f0;
+    }
+    .slider-images {
+      display: flex;
+      transition: transform 0.4s ease;
+      height: 100%;
+    }
+    .slider-images img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(46, 125, 50, 0.7);
+      color: white;
+      border: none;
+      width: 35px;  /* সামান্য বড় */
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      z-index: 5;
+      transition: 0.2s;
+    }
+    .slider-btn:hover { background: var(--primary); }
+    .prev-btn { left: 10px; }
+    .next-btn { right: 10px; }
+    .slide-dots {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 5;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.6);
+      cursor: pointer;
+    }
+    .dot.active { background: var(--primary); }
+
+    /* কার্ড কন্টেন্ট */
+    .card-content {
+      padding: 1.5rem;  /* প্যাডিং সামান্য বাড়ানো হয়েছে */
+    }
+    .cattle-name {
+      font-size: 1.6rem;  /* নাম বড় */
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .cattle-detail {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      margin: 1rem 0;
+      font-size: 1rem;
+    }
+    .detail-tag {
+      background: var(--secondary);
+      padding: 0.3rem 1rem;  /* প্যাডিং বাড়ানো */
+      border-radius: 50px;
+      font-size: 0.95rem;
+    }
+    .view-details {
+      color: var(--primary);
+      font-weight: 600;
+      margin-top: 0.8rem;
+      display: inline-block;
+      font-size: 1.1rem;
+    }
+
+    /* মোডাল (বিশদ বিবরণ) - অপরিবর্তিত */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 200;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .modal-content {
+      background: white;
+      border-radius: 30px;
+      max-width: 800px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      padding: 2rem;
+    }
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 2.5rem;
+      cursor: pointer;
+      color: var(--primary);
+    }
+    .modal-slider {
+      position: relative;
+      height: 300px;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    .modal-slider .slider-images { height: 100%; }
+    .modal-slider img { object-fit: cover; }
+    .modal-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .detail-item {
+      background: #f5f5f5;
+      padding: 0.8rem;
+      border-radius: 12px;
+    }
+    .detail-label {
+      font-weight: 700;
+      color: var(--primary);
+    }
+    @media (max-width: 600px) {
+      .modal-details { grid-template-columns: 1fr; }
+    }
+
+    /* হিরো ব্যানার */
+    .page-header {
+      background: var(--primary);
+      color: white;
+      padding: 3rem 0;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .stat-banner {
+      background: var(--secondary);
+      border-radius: 60px;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <!-- হোয়াটসঅ্যাপ ফ্লোটিং বাটন -->
+  <a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+  <!-- নেভবার -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <div class="logo"><i class="fas fa-leaf"></i> খামার ভিটা</div>
+      <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+      <div class="nav-links" id="navLinks">
+        <a href="#home">হোম</a>
+        <a href="#cattle">কুরবানির গরু কালেকশন</a>
+        <a href="file:///D:/Project/Khamar-Vita/Website/kurbani_porisheba.html">কুরবানি কেন্দ্রিক পরিষেবা</a>
+        <a href="#about">আমাদের সম্পর্কে</a>
+        <a href="#contact">যোগাযোগ</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- পৃষ্ঠা শিরোনাম -->
+  <section class="page-header">
+    <div class="container">
+      <h1>🐄 খামার ভিটা কুরবানির কালেকশন</h1>
+      <p style="font-size: 1.4rem;">পরম যত্নে লালিত প্রতিটি গরু- আপনার কুরবানির জন্য!</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- পরিসংখ্যান বার -->
+    <div class="stat-banner">
+      <span><i class="fas fa-cow"></i> গরু সংখ্যাঃ ২০ টি</span>
+      <span><i class="fas fa-map-marker-alt"></i> ঘাটাইল, টাঙ্গাইল, ঢাকা</span>
+      <span><i class="fas fa-leaf"></i> ১০০% প্রাকৃতিক</span>
+      <span><i class="fas fa-id-card"></i> স্বাস্থ্য কার্ড সহ</span>
+    </div>
+
+    <!-- ২০টি গরুর গ্রিড - ৩টি করে সারিতে (পরিবর্তিত) -->
+    <div class="cattle-grid" id="cattleGridContainer"></div>
+
+    <!-- ইনকোয়ারি সিটিএ -->
+    <div style="background: var(--secondary); border-radius: 60px; padding: 2.5rem; text-align: center; margin: 3rem 0;">
+      <h2 style="color: var(--text-dark);">কোরবানির জন্য গরু পছন্দ করতে আগ্রহী?</h2>
+      <p style="font-size: 1.3rem; margin: 1rem 0;">সরাসরি ফার্মে এসে দেখুন, পছন্দ করে বুকিং দিন।</p>
+      <a href="contact.html" class="btn" style="background: var(--primary); color: white;">যোগাযোগ করুন</a>
+    </div>
+  </div>
+
+  <!-- মোডাল (বিশদ বিবরণ) -->
+  <div id="cattleModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- ফুটার -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><h3><i class="fas fa-leaf"></i> খামার ভিটা</h3><p>একটি নৈতিক খামার, ২০২১ থেকে</p></div>
+        <div><h4>দ্রুত লিংক</h4><p><a href="index.html">হোম</a><br><a href="cattles.html">কুরবানির গরু কালেকশন</a><br><a href="kurbani_porisheba.html">কুরবানি কেন্দ্রিক পরিষেবা</a><br><a href="about.html">আমাদের সম্পর্কে</a><br><a href="contact.html">যোগাযোগ</a></p></div>
+        <div><h4>যোগাযোগ</h4><p><i class="fas fa-phone"></i> +880 1928 506 706<br><i class="fas fa-envelope"></i> khamarvita@gmail.com<br><i class="fas fa-map-marker-alt"></i> ঘাটাইল, টাঙ্গাইল, ঢাকা</p></div>
+      </div>
+      <div class="copyright">© ২০২৫ খামার ভিটা। সর্বস্বত্ব সংরক্ষিত।</div>
+    </div>
+  </footer>
+
+  <script>
+    // হ্যামবার্গার মেনু
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    if(hamburger) {
+      hamburger.addEventListener('click', ()=> navLinks.classList.toggle('show'));
+    }
+
+    // ২০টি গরুর ডেটা (বাংলা নাম, জাত, বয়স, ওজন, বিবরণ)
+    const cattleData = [
+      { name: 'লাল দেশি গরু', bnName: 'দেশি গরু', breed: 'দেশী', age: '৫ বছর', weight: '৪৫০ কেজি', type: 'ষাঁড়', desc: 'খুব শান্ত ও স্বাস্থ্যবান। ঘাস ও ভুট্টাভিত্তিক খাদ্য। সব টিকা দেওয়া।' },
+      { name: 'সাদা কালো দেশি গরু', bnName: 'দেশি গরু', breed: 'সাহিওয়াল', age: '৪ বছর', weight: '৩৮০ কেজি', type: 'গাভী', desc: 'দুধেল গাভী, বর্তমানে বাছুর সহ। খুবই স্বাস্থ্যকর।' },
+      { name: 'বাসব', bnName: 'বাসব', breed: 'হলিকার', age: '৬ বছর', weight: '৫২০ কেজি', type: 'ষাঁড়', desc: 'মজবুত গঠন, কোরবানির জন্য আদর্শ। প্রাকৃতিক খাদ্য।' },
+      { name: 'গৌরী', bnName: 'গৌরী', breed: 'ফ্রিজিয়ান', age: '৩.৫ বছর', weight: '৪২০ কেজি', type: 'গাভী', desc: 'হাইব্রিড জাত, দুধ ও মাংস দুটোর জন্যই ভালো।' },
+      { name: 'নন্দিনী', bnName: 'নন্দিনী', breed: 'গির', age: '৪ বছর', weight: '৪০০ কেজি', type: 'গাভী', desc: 'খুবই স্বাস্থ্যবতী। নিয়মিত টিকা দেওয়া আছে।' },
+      { name: 'বীর', bnName: 'বীর', breed: 'সাহিওয়াল', age: '৫ বছর', weight: '৪৮০ কেজি', type: 'ষাঁড়', desc: 'পেশিবহুল ও শক্তিশালী। খোলা চারণভূমিতে বড়।' },
+      { name: 'মঙ্গলা', bnName: 'মঙ্গলা', breed: 'হলিকার', age: '৩ বছর', weight: '৩৫০ কেজি', type: 'গাভী', desc: 'ছোট কিন্তু শক্ত। ভালো মাংস উৎপাদন করবে।' },
+      { name: 'কৃষ্ণা', bnName: 'কৃষ্ণা', breed: 'গির', age: '৪.৫ বছর', weight: '৪৩০ কেজি', type: 'গাভী', desc: 'কালো রঙের সুন্দর গাভী। সম্পূর্ণ জৈব খাদ্য।' },
+      { name: 'ভীম', bnName: 'ভীম', breed: 'ফ্রিজিয়ান', age: '৭ বছর', weight: '৫৫০ কেজি', type: 'ষাঁড়', desc: 'বড় ও ভারী। কোরবানির জন্য চমৎকার।' },
+      { name: 'রাধা', bnName: 'রাধা', breed: 'সাহিওয়াল', age: '৩ বছর', weight: '৩৬০ কেজি', type: 'গাভী', desc: 'দুধ ও মাংস উৎপাদনে ভালো।' },
+      { name: 'সূর্য', bnName: 'সূর্য', breed: 'গির', age: '৫ বছর', weight: '৪৬০ কেজি', type: 'ষাঁড়', desc: 'লাল রঙের ষাঁড়। খুবই শান্ত।' },
+      { name: 'চাঁদনী', bnName: 'চাঁদনী', breed: 'হলিকার', age: '৪ বছর', weight: '৩৯০ কেজি', type: 'গাভী', desc: 'চাঁদের মত সাদা কালো দাগ। স্বাস্থ্যবতী।' },
+      { name: 'তপু', bnName: 'তপু', breed: 'গির', age: '২.৫ বছর', weight: '৩২০ কেজি', type: 'ষাঁড়', desc: 'ছোট বয়স, কিন্তু ভালো খাদ্যে বড় হচ্ছে।' },
+      { name: 'বুলবুল', bnName: 'বুলবুল', breed: 'সাহিওয়াল', age: '৪ বছর', weight: '৪১০ কেজি', type: 'ষাঁড়', desc: 'মাঝারি আকার, শক্ত শরীর।' },
+      { name: 'মতি', bnName: 'মতি', breed: 'ফ্রিজিয়ান', age: '৫ বছর', weight: '৪৭০ কেজি', type: 'ষাঁড়', desc: 'মোটাতাজা নয়, স্বাভাবিকভাবে বড়।' },
+      { name: 'রূপা', bnName: 'রূপা', breed: 'গির', age: '৩.৮ বছর', weight: '৪০৫ কেজি', type: 'গাভী', desc: 'রূপালি রঙ। সম্পূর্ণ টিকা দেওয়া।' },
+      { name: 'কালু', bnName: 'কালু', breed: 'হলিকার', age: '৬ বছর', weight: '৫০০ কেজি', type: 'ষাঁড়', desc: 'কালো রঙের বিশাল ষাঁড়।' },
+      { name: 'ধনু', bnName: 'ধনু', breed: 'সাহিওয়াল', age: '৪ বছর', weight: '৪৪০ কেজি', type: 'ষাঁড়', desc: 'ধনুকের মত বাঁকা শিং। খুব স্বাস্থ্যকর।' },
+      { name: 'গোলাপ', bnName: 'গোলাপ', breed: 'গির', age: '৩ বছর', weight: '৩৭০ কেজি', type: 'গাভী', desc: 'গোলাপি রঙের আভা। খুবই আদরের।' },
+      { name: 'শিবা', bnName: 'শিবা', breed: 'ফ্রিজিয়ান', age: '৫.৫ বছর', weight: '৫১০ কেজি', type: 'ষাঁড়', desc: 'শিবের বাহনের মত বিশাল। কোরবানির জন্য প্রস্তুত।' }
+    ];
+
+    // প্রতিটি গরুর জন্য ৫টি ছবির URL (আনস্প্ল্যাশ থেকে ভিন্ন ভিন্ন আইডি)
+    function getCattleImages(index) {
+      let baseId = 200 + index * 10;
+      return [
+        `https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?w=400&h=300&fit=crop&sig=${baseId}`,
+        `https://images.unsplash.com/photo-1527153818091-1a9638521e2a?w=400&h=300&fit=crop&sig=${baseId+1}`,
+        `https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=400&h=300&fit=crop&sig=${baseId+2}`,
+        `https://images.unsplash.com/photo-1546445317-29f4545e9d53?w=400&h=300&fit=crop&sig=${baseId+3}`,
+        `https://images.unsplash.com/photo-1596739902853-38738511ec9c?w=400&h=300&fit=crop&sig=${baseId+4}`
+      ];
+    }
+
+    // গ্রিড রেন্ডার
+    const gridContainer = document.getElementById('cattleGridContainer');
+    function renderCattleGrid() {
+      let html = '';
+      for (let i = 0; i < 20; i++) {
+        const cattle = cattleData[i];
+        const images = getCattleImages(i);
+        
+        // ইমেজ স্লাইডারের জন্য HTML
+        let imagesHtml = '';
+        images.forEach((img, idx) => {
+          imagesHtml += `<img src="${img}" alt="${cattle.bnName} ছবি ${idx+1}" class="slider-img">`;
+        });
+
+        html += `
+          <div class="cattle-card" data-index="${i}">
+            <div class="slider-container" id="slider-${i}" onclick="event.stopPropagation()">
+              <div class="slider-images" id="sliderImages-${i}">
+                ${imagesHtml}
+              </div>
+              <button class="slider-btn prev-btn" onclick="moveSlide(event, ${i}, -1)"><i class="fas fa-chevron-left"></i></button>
+              <button class="slider-btn next-btn" onclick="moveSlide(event, ${i}, 1)"><i class="fas fa-chevron-right"></i></button>
+              <div class="slide-dots" id="dots-${i}">
+                ${[0,1,2,3,4].map(idx => `<span class="dot ${idx === 0 ? 'active' : ''}" onclick="goToSlide(event, ${i}, ${idx})"></span>`).join('')}
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="cattle-name">${cattle.bnName}</div>
+              <div class="cattle-detail">
+                <span class="detail-tag"><i class="fas fa-paw"></i> ${cattle.breed}</span>
+                <span class="detail-tag"><i class="fas fa-calendar-alt"></i> ${cattle.age}</span>
+                <span class="detail-tag"><i class="fas fa-weight-scale"></i> ${cattle.weight}</span>
+                <span class="detail-tag"><i class="fas fa-venus-mars"></i> ${cattle.type}</span>
+              </div>
+              <span class="view-details" onclick="openModal(${i})">বিস্তারিত দেখুন →</span>
+            </div>
+          </div>
+        `;
+      }
+      gridContainer.innerHTML = html;
+
+      // প্রতিটি স্লাইডারের জন্য অবস্থা সংরক্ষণ
+      for (let i = 0; i < 20; i++) {
+        window[`slideIndex_${i}`] = 0;
+      }
+    }
+
+    // স্লাইডার ফাংশন
+    window.moveSlide = function(event, index, direction) {
+      event.stopPropagation();
+      const sliderImages = document.getElementById(`sliderImages-${index}`);
+      if (!sliderImages) return;
+      const totalSlides = 5;
+      let current = window[`slideIndex_${index}`] || 0;
+      current = (current + direction + totalSlides) % totalSlides;
+      window[`slideIndex_${index}`] = current;
+      sliderImages.style.transform = `translateX(-${current * 100}%)`;
+      
+      // ডট আপডেট
+      updateDots(index, current);
+    };
+
+    window.goToSlide = function(event, index, slide) {
+      event.stopPropagation();
+      const sliderImages = document.getElementById(`sliderImages-${index}`);
+      if (!sliderImages) return;
+      window[`slideIndex_${index}`] = slide;
+      sliderImages.style.transform = `translateX(-${slide * 100}%)`;
+      updateDots(index, slide);
+    };
+
+    function updateDots(index, active) {
+      const dotsContainer = document.getElementById(`dots-${index}`);
+      if (!dotsContainer) return;
+      const dots = dotsContainer.querySelectorAll('.dot');
+      dots.forEach((dot, i) => {
+        if (i === active) dot.classList.add('active');
+        else dot.classList.remove('active');
+      });
+    }
+
+    // মোডাল খোলা
+    window.openModal = function(index) {
+      const cattle = cattleData[index];
+      const images = getCattleImages(index);
+      
+      let imagesHtml = '';
+      images.forEach(img => {
+        imagesHtml += `<img src="${img}" alt="${cattle.bnName}">`;
+      });
+
+      const modalContent = `
+        <h2 style="color: var(--primary);">${cattle.bnName} (${cattle.type})</h2>
+        <div class="modal-slider">
+          <div class="slider-images" id="modalSliderImages">
+            ${imagesHtml}
+          </div>
+          <button class="slider-btn prev-btn" onclick="moveModalSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+          <button class="slider-btn next-btn" onclick="moveModalSlide(1)"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="modal-details">
+          <div class="detail-item"><span class="detail-label">জাত:</span> ${cattle.breed}</div>
+          <div class="detail-item"><span class="detail-label">বয়স:</span> ${cattle.age}</div>
+          <div class="detail-item"><span class="detail-label">ওজন:</span> ${cattle.weight}</div>
+          <div class="detail-item"><span class="detail-label">ধরন:</span> ${cattle.type}</div>
+          <div class="detail-item" style="grid-column: span 2;"><span class="detail-label">বিবরণ:</span> ${cattle.desc}</div>
+          <div class="detail-item"><span class="detail-label">টিকা:</span> FMD, BQ, LSD, Anthrax দেওয়া</div>
+          <div class="detail-item"><span class="detail-label">কৃমি:</span> নিয়মিত ডিওয়ার্মিং করা</div>
+          <div class="detail-item"><span class="detail-label">খাদ্য:</span> প্রাকৃতিক ঘাস, ভুট্টা, খৈল</div>
+          <div class="detail-item"><span class="detail-label">মূল্য:</span> লাইভ ওজন অনুযায়ী (ন্যায্যমূল্য)</div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+          <a href="contact.html" class="btn">এই গরুটির জন্য ইনকোয়ারি করুন</a>
+        </div>
+      `;
+      document.getElementById('modalContent').innerHTML = modalContent;
+      document.getElementById('cattleModal').style.display = 'flex';
+      
+      // মোডাল স্লাইডার
+      window.modalSlideIndex = 0;
+      updateModalSlider();
+    };
+
+    window.modalSlideIndex = 0;
+    window.moveModalSlide = function(direction) {
+      const slider = document.getElementById('modalSliderImages');
+      if (!slider) return;
+      const totalSlides = slider.children.length;
+      window.modalSlideIndex = (window.modalSlideIndex + direction + totalSlides) % totalSlides;
+      updateModalSlider();
+    };
+
+    function updateModalSlider() {
+      const slider = document.getElementById('modalSliderImages');
+      if (slider) {
+        slider.style.transform = `translateX(-${window.modalSlideIndex * 100}%)`;
+      }
+    }
+
+    window.closeModal = function() {
+      document.getElementById('cattleModal').style.display = 'none';
+    };
+
+    // মোডালের বাইরে ক্লিক করলে বন্ধ
+    window.onclick = function(event) {
+      const modal = document.getElementById('cattleModal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    };
+
+    // পৃষ্ঠা লোডে গ্রিড রেন্ডার
+    renderCattleGrid();
+  </script>
+</body>
+</html>
